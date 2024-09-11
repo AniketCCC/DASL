@@ -71,37 +71,48 @@ export default function Search() {
 
   return (
 	<html>
-    	<h1 class="text-center text-7xl py-20 font-bold">Dictionary of American Sign Language</h1>
-	<div className="absolute top-0 right-0 container mx-auto py-20">
-	 <div className="flex justify-end px-60 py-28">
-		<ParameterSelector name={"Handshape"} active={handshape} onSelect={setHandshape} options={["1", "3"]}/>
-	  	<ParameterSelector name={"Flexion"} active={flexion} onSelect={setFlexion} options={["Bent", "Crossed"]}/>
-		<ParameterSelector name={"Sign Type"} active={signType} onSelect={setSignType} options={["Asymmetrical Different Handshape", "Asymmetrical Same Handshape"]}/>
-		<ParameterSelector name={"Major Location"} active={majorLocation} onSelect={setMajorLocation} options={["Body", "Hand"]}/>
-		<ParameterSelector name={"Minor Location"} active={minorLocation} onSelect={setMinorLocation} options={["Body Away", "Eye"]}/>
-	  </div>
-	</div>
-	<div class="fixed top-0 right-0 p-20">
-	<Link to="/add">
-	<button class="w-24 h-24 rounded-lg flex justify-center items-center border border-black-200 shadow-lg hover:bg-slate-200">
-	<img src={plus_icon} alt="Add Sign"/>
-	</button>
-	</Link>
-	</div>
+    <div class="w-screen h-screen">
+      <div class="flex flex-row align-center justify-end">
+        <h1 class="flex flex-row justify-start text-center text-6xl py-20 font-bold">Dictionary of American Sign Language</h1>
+        
+        <div class="inline-flex p-20">
+          <Link to="/add">
+            <button class="w-24 h-24 rounded-lg flex justify-center items-center border border-black-200 shadow-lg hover:bg-slate-200">
+              <img src={plus_icon} alt="Add Sign"/>
+            </button>
+          </Link>
+        </div>
+      </div>
 
-	<div class="absolute inset-x-0 bottom-0 h-28">
-	<div class="flex justify-center">
-	<button class="w-48 px-4 py-2 text-sm text-black-600 font-unbold rounded-l-xl border border-black-200 hover:bg-orange-400 text-2xl shadow-lg">Parameter Search</button>
-	<button class="w-48 px-4 py-2 text-sm text-black-600 font-unbold rounded-r-xl border border-black-200 hover:bg-red-400 text-2xl shadow-lg">Tag Search</button>
-	</div>
-	</div>
-	<div class="fixed bottom-0 right-0 p-20">
-	<Link to={"/results"}>
-	<button class="w-24 h-24 rounded-lg flex justify-center items-center border border-black-200 shadow-lg hover:bg-slate-200">
-	<img src={search_icon} alt="Search"/>
-	</button>
-	</Link>
-	</div>
+      <div className="flex flex-row justify-center">
+      <div className="flex flex-row px-20">
+        <ParameterSelector name={"Handshape"} active={handshape} onSelect={setHandshape} options={["1", "3"]}/>
+        <ParameterSelector name={"Flexion"} active={flexion} onSelect={setFlexion} options={["Bent", "Crossed"]}/>
+        <ParameterSelector name={"Sign Type"} active={signType} onSelect={setSignType} options={["Asymmetrical Different Handshape", "Asymmetrical Same Handshape"]}/>
+        <ParameterSelector name={"Major Location"} active={majorLocation} onSelect={setMajorLocation} options={["Body", "Hand"]}/>
+        <ParameterSelector name={"Minor Location"} active={minorLocation} onSelect={setMinorLocation} options={["Body Away", "Eye"]}/>
+        </div>
+      </div>
+      
+      <div class="flex flex-row items-bottom h-screen">
+        <div class="flex flex-row align-bottom justify-center">
+          <div class="inline-flex align-bottom justify-center">
+            <div class="flex flex-row justify-center align-end">
+              <button class="w-48 px-4 py-2 text-sm text-black-600 font-unbold rounded-l-xl border border-black-200 hover:bg-orange-400 text-2xl shadow-lg">Parameter Search</button>
+              <button class="w-48 px-4 py-2 text-sm text-black-600 font-unbold rounded-r-xl border border-black-200 hover:bg-red-400 text-2xl shadow-lg">Tag Search</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="inline-flex flex-row justify-end items-center align-bottom p-20">
+            <Link to={"/results"}>
+              <button class="w-24 h-24 rounded-lg flex justify-center items-center border border-black-200 shadow-lg hover:bg-slate-200">
+                <img src={search_icon} alt="Search"/>
+              </button>
+            </Link>
+        </div>
+      </div> 
+    </div>
 	</html>
   );
 }
