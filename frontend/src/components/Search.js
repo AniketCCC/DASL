@@ -71,9 +71,9 @@ export default function Search() {
 
   return (
     <html>
-      <div class="flex flex-row align-center justify-end container-snap">
-        <h1 class="flex flex-row justify-start text-center text-6xl py-20 font-bold">Dictionary of American Sign Language</h1>
-        <div class="inline-flex p-20">
+      <div className="flex flex-row align-center justify-end container-snap">
+        <h1 className="flex flex-row justify-start text-center text-6xl py-20 font-bold">Dictionary of American Sign Language</h1>
+        <div className="inline-flex p-20">
           <Link to="/add">
             <button class="w-24 h-24 rounded-lg flex justify-center items-center border border-black-200 shadow-lg hover:bg-slate-200">
               <img src={plus_icon} alt="Add Sign"/>
