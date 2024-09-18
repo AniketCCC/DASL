@@ -10,12 +10,19 @@ Clone the repository and in your ide of choice ( Vs code, Zed, Intellij)) open t
 
 now go into your terminal and try this
 
+THIS IS REQUIRED TO HAVE WEBSITE SERVER BOOT
 ```
 python3 manage.py runserver
 python manage.py runserver
 ```
 it should say "running" or something like that 
 now try 
+INSIDE OF 'frontend' folder there is another README
+    But once inside of frontend directory { cd frontend }
+    Run { npm install } to make sure you have all necessary dependencies
+    Run { npm start } to have the website open on your computer
+
+
 ```
 python3 manage.py makemigrations
 python3 manage.py migrate
