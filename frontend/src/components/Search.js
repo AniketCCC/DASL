@@ -96,7 +96,14 @@ export default function Search() {
 	</div>
 	</div>
 	<div class="fixed bottom-0 right-0 p-20">
-	<Link to={"/results"}>
+	<Link to={{
+		pathname: "/results",
+		search:   "?handshape=" + handshape +
+			  "&flexion="   + flexion +
+			  "&signType="   + signType +
+			  "&majorLocation=" + majorLocation +
+			  "&minorLocation=" + minorLocation
+	}}>
 	<button class="w-24 h-24 rounded-lg flex justify-center items-center border border-black-200 shadow-lg hover:bg-slate-200">
 	<img src={search_icon} alt="Search"/>
 	</button>

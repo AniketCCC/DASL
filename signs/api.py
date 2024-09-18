@@ -9,6 +9,6 @@ class SignViewSet(viewsets.ModelViewSet):
         permissions.AllowAny
     ]
     serializer_class = SignSerializer
-    filter_backends = [DjangoFilterBackend]    
+    #filter_backends = [DjangoFilterBackend]    
     filterset_fields = ['handshape', 'flexion', 'sign_type', 'major_location', 'minor_location']
 
