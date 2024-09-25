@@ -139,12 +139,7 @@ export default function Sign() {
       </div>
     <div class="inline-flex flex-col justify-center min-h-screen p-24">
       <ReactMediaRecorder
-        onStop={() => {
-          let tracks = navigator.mediaDevices.getUserMedia({video: true, audio: true}).getTracks();
-          tracks.forEach(track => {
-            track.stop();
-          });
-        }} 
+        
         video render={({ status, startRecording, stopRecording, mediaBlobUrl }) => (
           <div>
             <button class="w-40 h-10 text-sm rounded-lg font-semibold flex justify-center items-center border border-black-500 hover:bg-slate-200" onClick={startRecording}>Start Recording</button>
