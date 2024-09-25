@@ -45,8 +45,8 @@ function ParameterSelector({ name, active, onSelect, options}) {
                 <button
                   onClick={() => onSelect(option)}
                   className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
+                    active ? 'w-[100%] text-left bg-gray-100 text-gray-900' : ' w-[100%] text-left text-gray-700',
+                    'W-[100%] text-left block px-4 py-2 text-sm'
                   )}
                 >
                       {option}

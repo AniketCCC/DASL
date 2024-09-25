@@ -42,8 +42,8 @@ export function ParameterSelector({ name, active, onSelect, options}) {
                 <button
                   onClick={() => onSelect(option)}
                   className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
+                    active ? 'w-[100%] text-left bg-gray-100 text-gray-900' : 'w-[100%] text-left text-gray-700',
+                    'w-[100%] text-left block px-4 py-2 text-sm'
                   )}
                 >
 		      {option}
@@ -104,6 +104,8 @@ export default function Sign() {
     });
   };
  
+  
+
   return (
     <div className="min-h-screen min-w-screen">
       <div className="absolute top-0 right-0 container mx-auto py-20">
@@ -137,8 +139,13 @@ export default function Sign() {
       </div>
     <div class="inline-flex flex-col justify-center min-h-screen p-24">
       <ReactMediaRecorder
-        video
-        render={({ status, startRecording, stopRecording, mediaBlobUrl }) => (
+        onStop={() => {
+          let tracks = navigator.mediaDevices.getUserMedia({video: true, audio: true}).getTracks();
+          tracks.forEach(track => {
+            track.stop();
+          });
+        }} 
+        video render={({ status, startRecording, stopRecording, mediaBlobUrl }) => (
           <div>
             <button class="w-40 h-10 text-sm rounded-lg font-semibold flex justify-center items-center border border-black-500 hover:bg-slate-200" onClick={startRecording}>Start Recording</button>
             <button class="w-40 h-10 text-sm rounded-lg font-semibold flex justify-center items-center border border-black-500 hover:bg-slate-200" onClick={stopRecording}>Stop Recording</button>
@@ -149,7 +156,7 @@ export default function Sign() {
       />
     </div>
     <div class="fixed bottom-0 right-0 p-20">
-      <Link to="/">
+      <Link to="/search">
         <button class="w-24 h-24 rounded-lg flex justify-center items-center border border-black-200 shadow-lg hover:bg-slate-200">
           <img src={back_icon} alt="Back"/>
         </button>
