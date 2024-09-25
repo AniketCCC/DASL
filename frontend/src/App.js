@@ -6,13 +6,15 @@ import {Routes, Route} from 'react-router-dom';
 import Search from './components/Search';
 import Results from './components/Results';
 import Sign from './components/Sign';
+import Add from './components/Add';
 
 export default function App() {
   return (
 	<Routes>
 		<Route path='/' element={<Search />}/>
 	  	<Route path='/results' element={<Results />}/>
-	  	<Route path='/add' element={<Sign />}/>
+	  	<Route path='/add' element={<Add />}/>
+	  	<Route path='/sign/:sign' element={<Sign />}/>
 	</Routes>
   );
 }

@@ -1,6 +1,8 @@
 import react, {useState, useEffect} from 'react'
 import {useParams, useSearchParams} from 'react-router-dom'
 
+import {Link} from 'react-router-dom';
+
 export default function Results() {
 	const [ASLParameters, setSearchParams] = useSearchParams();
 	//const ASLParameters = useSearchParams();
@@ -36,8 +38,22 @@ export default function Results() {
 	      // Handle error here
 	    })}
 , [ASLParameters]);
-	return (<div>
-		{(!signs)?(<p>Empty sign list</p>):(<ul>{signs.map((sign) => <p>{sign["sign_name"]}</p>)}</ul>)} {/*Add key for list*/}
-	       </div>);
+	return (<div class="flex flex-col items-center justify-center">
+		<h1 class="font-semibold font-16">Matching Signs:</h1>
+		<div>
+		{(!signs)
+			?(<p>Empty sign list</p>)
+			:(	<ul class="list-none">
+				{signs.map((sign) => <li><Link to={"/sign/" + sign["id"]} state={sign}>
+					<button class = "w-48 px-4 py-2 text-sm text-black-600 rounded-xl border border-black-200 hover:bg-slate-200 text-2xl">
+						{sign["sign_name"]}
+					</button></Link>
+					</li>)}
+			 	</ul>
+			)
+		} {/*Add key for list*/}
+	 	</div>
+	       </div>
+		);
 }
 
