@@ -42,8 +42,8 @@ export function ParameterSelector({ name, active, onSelect, options}) {
                 <button
                   onClick={() => onSelect(option)}
                   className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
+                    active ? 'w-[100%] text-left bg-gray-100 text-gray-900' : 'w-[100%] text-left text-gray-700',
+                    'w-[100%] text-left block px-4 py-2 text-sm'
                   )}
                 >
 		      {option}
@@ -104,54 +104,64 @@ export default function Add() {
     });
   };
  
+  
+
   return (
-    <>
-    <div className="absolute top-0 right-0 container mx-auto py-20">
-	 <div className="flex justify-end px-60">
-		<ParameterSelector name={"Handshape"} active={handshape} onSelect={setHandshape} options={["1", "3"]}/>
-	  	<ParameterSelector name={"Flexion"} active={flexion} onSelect={setFlexion} options={["Bent", "Crossed"]}/>
-		<ParameterSelector name={"Sign Type"} active={signType} onSelect={setSignType} options={["Asymmetrical Different Handshape", "Asymmetrical Same Handshape"]}/>
-		<ParameterSelector name={"Major Location"} active={majorLocation} onSelect={setMajorLocation} options={["Body", "Hand"]}/>
-		<ParameterSelector name={"Minor Location"} active={minorLocation} onSelect={setMinorLocation} options={["Body Away", "Eye"]}/>
-	  </div>
-    <div className="flex justify-end px-60 py-12">
-    <form class="bg-white w-96 border border-black-500 shadow-md rounded-lg px-12 pt-6 pb-8 mb-4">
-    <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="English">
-        English Translation
-      </label>
-      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={translation} onChange={e => setTranslation(e.target.value)}id="English" type="text" placeholder="English"/>
-    </div> 
-    </form>
-    </div>
-    </div>
-    <div class="fixed top-0 right-0 p-20">
-	<Link to="/add">
-	<button class="w-24 h-24 rounded-lg flex justify-center items-center border border-black-200 shadow-lg hover:bg-slate-200" onClick={handleSave}>
-	<img src={save_icon} alt="Save"/>
-	</button>
-    </Link>
-    </div>
-    <div class="absolute top-0 left-0 p-20">
-    <ReactMediaRecorder
-      video
-      render={({ status, startRecording, stopRecording, mediaBlobUrl }) => (
-        <div>
-          <button class="w-40 h-10 text-sm rounded-lg font-semibold flex justify-center items-center border border-black-500 hover:bg-slate-200" onClick={startRecording}>Start Recording</button>
-          <button class="w-40 h-10 text-sm rounded-lg font-semibold flex justify-center items-center border border-black-500 hover:bg-slate-200" onClick={stopRecording}>Stop Recording</button>
-          <video class="py-12" src={mediaBlobUrl} controls autoPlay loop />
-          <p class="font-semibold">{status}</p>
+    <div className="min-h-screen min-w-screen">
+      <div className="absolute top-0 right-0 container mx-auto py-20">
+        <div className="flex flex-row align-center justify-end container-snap">
+          <div className="flex justify-end px-60">
+            <ParameterSelector name={"Handshape"} active={handshape} onSelect={setHandshape} options={["1", "3"]}/>
+            <ParameterSelector name={"Flexion"} active={flexion} onSelect={setFlexion} options={["Bent", "Crossed"]}/>
+            <ParameterSelector name={"Sign Type"} active={signType} onSelect={setSignType} options={["Asymmetrical Different Handshape", "Asymmetrical Same Handshape"]}/>
+            <ParameterSelector name={"Major Location"} active={majorLocation} onSelect={setMajorLocation} options={["Body", "Hand"]}/>
+            <ParameterSelector name={"Minor Location"} active={minorLocation} onSelect={setMinorLocation} options={["Body Away", "Eye"]}/>
+          </div>
         </div>
-      )}
-    />
-  </div>
-    <div class="fixed bottom-0 right-0 p-20">
-	<Link to="/">
-	<button class="w-24 h-24 rounded-lg flex justify-center items-center border border-black-200 shadow-lg hover:bg-slate-200">
-	<img src={back_icon} alt="Back"/>
-	</button>
-    </Link>
+        
+        <div className="flex justify-end px-60 py-12">
+          <form class="bg-white w-96 border border-black-500 shadow-md rounded-lg px-12 pt-6 pb-8 mb-4">
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="English">
+              English Translation
+            </label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={translation} onChange={e => setTranslation(e.target.value)}id="English" type="text" placeholder="English"/>
+          </div> 
+        </form>
+        </div>
+      </div>
+      <div class="fixed top-0 right-0 p-20">
+        <Link to="/add">
+          <button class="w-24 h-24 rounded-lg flex justify-center items-center border border-black-200 shadow-lg hover:bg-slate-200" onClick={handleSave}>
+            <img src={save_icon} alt="Save"/>
+          </button>
+        </Link>
+      </div>
+    <div class="inline-flex flex-col justify-center min-h-screen p-24">
+      <ReactMediaRecorder
+        onStop={() => {
+          let tracks = navigator.mediaDevices.getUserMedia({video: true, audio: true}).getTracks();
+          tracks.forEach(track => {
+            track.stop();
+          });
+        }} 
+        video render={({ status, startRecording, stopRecording, mediaBlobUrl }) => (
+          <div>
+            <button class="w-40 h-10 text-sm rounded-lg font-semibold flex justify-center items-center border border-black-500 hover:bg-slate-200" onClick={startRecording}>Start Recording</button>
+            <button class="w-40 h-10 text-sm rounded-lg font-semibold flex justify-center items-center border border-black-500 hover:bg-slate-200" onClick={stopRecording}>Stop Recording</button>
+            <video class="py-12" src={mediaBlobUrl} controls autoPlay loop />
+            <p class="font-semibold">{status}</p>
+          </div>
+        )}
+      />
     </div>
-    </>
+    <div class="fixed bottom-0 right-0 p-20">
+      <Link to="/">
+        <button class="w-24 h-24 rounded-lg flex justify-center items-center border border-black-200 shadow-lg hover:bg-slate-200">
+          <img src={back_icon} alt="Back"/>
+        </button>
+      </Link>
+    </div>
+  </div>
   );
 };
