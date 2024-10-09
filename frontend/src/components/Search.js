@@ -1,6 +1,7 @@
 import search_icon from '../assets/search.svg';
 import plus_icon from '../assets/plus.svg';
 import '../App.css';
+import ParameterBar from "./ParameterBar.js"
 import { Link } from 'react-router-dom';
 
 
@@ -73,13 +74,16 @@ export default function Search() {
 	<html>
     	<h1 class="text-center text-7xl py-20 font-bold">Dictionary of American Sign Language</h1>
 	<div className="absolute top-0 right-0 container mx-auto py-20">
-	 <div className="flex justify-end px-60 py-28">
+		<div className="flex justify-end px-60 py-28">
+		<ParameterBar handshape={handshape} loc={flexion} movement={signType} setHandshape={setHandshape} setLocation={setFlexion} setMovement={setSignType}/>
+		</div>
+	 {/*<div className="flex justify-end px-60 py-28">
 		<ParameterSelector name={"Handshape"} active={handshape} onSelect={setHandshape} options={["1", "3"]}/>
-	  	<ParameterSelector name={"Flexion"} active={flexion} onSelect={setFlexion} options={["Bent", "Crossed"]}/>
-		<ParameterSelector name={"Sign Type"} active={signType} onSelect={setSignType} options={["Asymmetrical Different Handshape", "Asymmetrical Same Handshape"]}/>
+	  	<ParameterSelector name={"Location"} active={flexion} onSelect={setFlexion} options={["Bent", "Crossed"]}/>
+		<ParameterSelector name={"Movement"} active={signType} onSelect={setSignType} options={["Asymmetrical Different Handshape", "Asymmetrical Same Handshape"]}/>
 		<ParameterSelector name={"Major Location"} active={majorLocation} onSelect={setMajorLocation} options={["Body", "Hand"]}/>
 		<ParameterSelector name={"Minor Location"} active={minorLocation} onSelect={setMinorLocation} options={["Body Away", "Eye"]}/>
-	  </div>
+	  </div>*/}
 	</div>
 	<div class="fixed top-0 right-0 p-20">
 	<Link to="/add">
@@ -99,10 +103,10 @@ export default function Search() {
 	<Link to={{
 		pathname: "/results",
 		search:   "?handshape=" + handshape +
-			  "&flexion="   + flexion +
-			  "&signType="   + signType +
-			  "&majorLocation=" + majorLocation +
-			  "&minorLocation=" + minorLocation
+			  "&location="   + flexion +
+			  "&movement="   + signType// +
+//			  "&majorLocation=" + majorLocation +
+//			  "&minorLocation=" + minorLocation
 	}}>
 	<button class="w-24 h-24 rounded-lg flex justify-center items-center border border-black-200 shadow-lg hover:bg-slate-200">
 	<img src={search_icon} alt="Search"/>

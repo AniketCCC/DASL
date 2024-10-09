@@ -11,10 +11,10 @@ export default function Results() {
 	{/*TODO: Consistent casing*/}
 	useEffect(() => {
 	      fetch('http://localhost:8000/api/signs/?handshape=' + ASLParameters.get("handshape") + 
-		      				   '&flexion='   + ASLParameters.get("flexion")   +
-						   '&sign_type='   + ASLParameters.get("signType")   +
-						   '&major_location='   + ASLParameters.get("majorLocation")   +
-						   '&minor_location='   + ASLParameters.get("minorLocation")   ,
+		      		 '&location='   + ASLParameters.get("location")   +
+						   '&movement='   + ASLParameters.get("movement"),   //+
+//						   '&major_location='   + ASLParameters.get("majorLocation")   +
+//						   '&minor_location='   + ASLParameters.get("minorLocation")   ,
 		
 	    {
 	      method: 'GET',

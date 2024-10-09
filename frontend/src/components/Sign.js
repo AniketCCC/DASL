@@ -114,10 +114,10 @@ export default function Sign() {
     <div className="absolute top-0 right-0 container mx-auto py-20">
 	 <div className="flex justify-end px-60">
 		<ParameterDisplay name={"Handshape"}      value={signs[0].handshape}/>
-	  	<ParameterDisplay name={"Flexion"}        value={signs[0].flexion}  />
-		<ParameterDisplay name={"Sign Type"}      value={signs[0].sign_type}    />
-		<ParameterDisplay name={"Major Location"} value={signs[0].major_location}/>
-		<ParameterDisplay name={"Minor Location"} value={signs[0].minor_location}/>
+	  <ParameterDisplay name={"Location"}        value={signs[0].location}  />
+		<ParameterDisplay name={"Movement"}      value={signs[0].movement}    />
+		{/*<ParameterDisplay name={"Major Location"} value={signs[0].major_location}/>
+		<ParameterDisplay name={"Minor Location"} value={signs[0].minor_location}/>*/}
 	  </div>
     <div className="flex justify-end px-60 py-12">
     <form class="bg-white w-96 border border-black-500 shadow-md rounded-lg px-12 pt-6 pb-8 mb-4">

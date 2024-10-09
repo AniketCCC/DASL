@@ -10,7 +10,7 @@ class SignViewSet(viewsets.ModelViewSet):
     ]
     serializer_class = SignSerializer
     #filter_backends = [DjangoFilterBackend]    
-    filterset_fields = ['handshape', 'flexion', 'sign_type', 'major_location', 'minor_location']
+    filterset_fields = ['handshape', 'location', 'movement']#, 'major_location', 'minor_location']
 
 class SignNameViewSet(viewsets.ModelViewSet):
     queryset = Sign.objects.all()

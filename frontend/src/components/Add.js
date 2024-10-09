@@ -8,6 +8,9 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import save_icon from '../assets/save.svg';
 import back_icon from '../assets/arrow-back.svg';
 
+
+import ParameterBar from './ParameterBar.js'
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
@@ -73,11 +76,11 @@ export default function Add() {
     // Data to be sent in the POST request
     const postData = {
 	'sign_name': translation,
-    	'handshape': handshape,
-	'flexion': flexion,
-	'sign_type': signType,
-	'major_location': majorLocation,
-	'minor_location': minorLocation
+  'handshape': handshape,
+	'location': flexion,
+	'movement': signType
+	/*'major_location': majorLocation,
+	'minor_location': minorLocation*/
     };
 
     // Fetch POST request
@@ -111,11 +114,12 @@ export default function Add() {
       <div className="absolute top-0 right-0 container mx-auto py-20">
         <div className="flex flex-row align-center justify-end container-snap">
           <div className="flex justify-end px-60">
-            <ParameterSelector name={"Handshape"} active={handshape} onSelect={setHandshape} options={["1", "3"]}/>
-            <ParameterSelector name={"Flexion"} active={flexion} onSelect={setFlexion} options={["Bent", "Crossed"]}/>
-            <ParameterSelector name={"Sign Type"} active={signType} onSelect={setSignType} options={["Asymmetrical Different Handshape", "Asymmetrical Same Handshape"]}/>
+						<ParameterBar handshape={handshape} loc={flexion} movement={signType} setHandshape={setHandshape} setLocation={setFlexion} setMovement={setSignType}/>
+            {/*<ParameterSelector name={"Handshape"} active={handshape} onSelect={setHandshape} options={["1", "3"]}/>
+            <ParameterSelector name={"Location"} active={flexion} onSelect={setFlexion} options={["Bent", "Crossed"]}/>
+            <ParameterSelector name={"Movement"} active={signType} onSelect={setSignType} options={["Asymmetrical Different Handshape", "Asymmetrical Same Handshape"]}/>
             <ParameterSelector name={"Major Location"} active={majorLocation} onSelect={setMajorLocation} options={["Body", "Hand"]}/>
-            <ParameterSelector name={"Minor Location"} active={minorLocation} onSelect={setMinorLocation} options={["Body Away", "Eye"]}/>
+            <ParameterSelector name={"Minor Location"} active={minorLocation} onSelect={setMinorLocation} options={["Body Away", "Eye"]}/>*/}
           </div>
         </div>
         
@@ -139,12 +143,7 @@ export default function Add() {
       </div>
     <div class="inline-flex flex-col justify-center min-h-screen p-24">
       <ReactMediaRecorder
-        onStop={() => {
-          let tracks = navigator.mediaDevices.getUserMedia({video: true, audio: true}).getTracks();
-          tracks.forEach(track => {
-            track.stop();
-          });
-        }} 
+
         video render={({ status, startRecording, stopRecording, mediaBlobUrl }) => (
           <div>
             <button class="w-40 h-10 text-sm rounded-lg font-semibold flex justify-center items-center border border-black-500 hover:bg-slate-200" onClick={startRecording}>Start Recording</button>
