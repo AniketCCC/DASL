@@ -1,12 +1,13 @@
 import search_icon from '../assets/search.svg';
 import plus_icon from '../assets/plus.svg';
 import '../App.css';
+import ParameterBar from "./ParameterBar.js";
 import { Link } from 'react-router-dom';
 
 
-import { Fragment, useState } from 'react'
-import { Menu, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import { Fragment, useState } from 'react';
+import { Menu, Transition } from '@headlessui/react';
+import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import save_icon from '../assets/save.svg';
 import back_icon from '../assets/arrow-back.svg';
 
@@ -71,43 +72,42 @@ export default function Search() {
 
   return (
     <html>
-      <body>
-        <div className="flex flex-row align-center justify-end container-snap">
-          <h1 className="flex flex-row justify-start text-center text-6xl py-20 font-bold">Dictionary of American Sign Language</h1>
-          <div className="inline-flex p-20">
-            <Link to="/add">
-              <button class="w-24 h-24 rounded-lg flex justify-center items-center border border-black-200 shadow-lg hover:bg-slate-200">
-                <img src={plus_icon} alt="Add Sign"/>
-              </button>
-            </Link>
-          </div>
-        </div>
-        <div className="flex flex-row justify-center container-snap">
-          <div className="flex flex-row px-20">
-            <ParameterSelector name={"Handshape"} active={handshape} onSelect={setHandshape} options={["1", "3"]}/>
-            <ParameterSelector name={"Flexion"} active={flexion} onSelect={setFlexion} options={["Bent", "Crossed"]}/>
-            <ParameterSelector name={"Sign Type"} active={signType} onSelect={setSignType} options={["Asymmetrical Different Handshape", "Asymmetrical Same Handshape"]}/>
-            <ParameterSelector name={"Major Location"} active={majorLocation} onSelect={setMajorLocation} options={["Body", "Hand"]}/>
-            <ParameterSelector name={"Minor Location"} active={minorLocation} onSelect={setMinorLocation} options={["Body Away", "Eye"]}/>
-          </div>
-        </div>
-        
-
-        <div class="absolute inset-x-0 bottom-0 h-28 container-snap">
-          <div class="flex justify-center">
-            <button class="w-48 px-4 py-2 text-sm text-black-600 font-unbold rounded-l-xl border border-black-200 hover:bg-orange-400 text-2xl shadow-lg">Parameter Search</button>
-            <button class="w-48 px-4 py-2 text-sm text-black-600 font-unbold rounded-r-xl border border-black-200 hover:bg-red-400 text-2xl shadow-lg">Tag Search</button>
-          </div>
-        </div>
-        
-        <div class="fixed bottom-0 right-0 p-20 container-snap">
-          <Link to={"/results"}>
+			<div>
+      <div className="flex flex-row align-center justify-end container-snap">
+        <h1 className="flex flex-row justify-start text-center text-6xl py-20 font-bold">Dictionary of American Sign Language</h1>
+        <div className="inline-flex p-20">
+          <Link to="/add">
             <button class="w-24 h-24 rounded-lg flex justify-center items-center border border-black-200 shadow-lg hover:bg-slate-200">
-              <img src={search_icon} alt="Search"/>
+              <img src={plus_icon} alt="Add Sign"/>
             </button>
           </Link>
         </div>
-      </body>
+      </div>
+      <div className="flex flex-row justify-center container-snap">
+        <div className="flex flex-row px-20">
+					<ParameterBar handshape={handshape} loc={flexion} movement={signType} setHandshape={setHandshape} setLocation={setFlexion} setMovement={setSignType}/>
+        </div>
+      </div>
+
+      <div class="absolute inset-x-0 bottom-0 h-28 container-snap">
+        <div class="flex justify-center">
+          <button class="w-48 px-4 py-2 text-sm text-black-600 font-unbold rounded-l-xl border border-black-200 hover:bg-orange-400 text-2xl shadow-lg">Parameter Search</button>
+          <button class="w-48 px-4 py-2 text-sm text-black-600 font-unbold rounded-r-xl border border-black-200 hover:bg-red-400 text-2xl shadow-lg">Tag Search</button>
+        </div>
+      </div>
+      
+      <div class="fixed bottom-0 right-0 p-20 container-snap">
+        	<Link to={{
+		pathname: "/results", search:   "?handshape=" + handshape +
+			  "&location="   + flexion +
+			  "&movement="   + signType}}>
+
+          <button class="w-24 h-24 rounded-lg flex justify-center items-center border border-black-200 shadow-lg hover:bg-slate-200">
+            <img src={search_icon} alt="Search"/>
+          </button>
+        </Link>
+      </div>
+			</div>
     </html>
   );
 }

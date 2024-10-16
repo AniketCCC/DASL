@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useParams} from 'react-router-dom';
 import { ReactMediaRecorder } from 'react-media-recorder';
 
 import { Fragment } from 'react'
@@ -12,17 +12,19 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export function ParameterSelector({ name, active, onSelect, options}) {
+export function ParameterDisplay({ name, value}) {
   return (
     <div>
     <p className="font-semibold">{name}:</p>
-    <Menu as="div" className="relative inline-block text-left">
+    <div className="relative inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex w-60 h-10 justify-center rounded-md bg-white px-3 py-2 text-sm text-gray-900 shadow-sm border border-black-200 hover:bg-gray-50">
-	  {active}
-          <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
-        </Menu.Button>
+        <div className="inline-flex w-60 h-14 items-center justify-center rounded-md bg-white px-3 py-2 text-sm text-gray-900 shadow-sm border border-black-200 hover:bg-gray-50">
+	  {value}
+        </div>
       </div>
+{/*<<<<<<< HEAD*/}
+    </div>
+{/*=======
 
       <Transition
         as={Fragment}
@@ -54,12 +56,47 @@ export function ParameterSelector({ name, active, onSelect, options}) {
         </Menu.Items>
       </Transition>
     </Menu>
+>>>>>>> origin/main*/}
     </div>
   )
 }
 
 export default function Sign() {
   // English translation
+	//const [ASLParameters, setSearchParams] = useSearchParams();
+	let { sign } = useParams();
+
+	//const ASLParameters = useSearchParams();
+	//const ASLParameters = new URL(document.location).searchParameters;
+	const [signs, setSigns] = useState(null);
+	{/*TODO: Consistent casing*/}
+	useEffect(() => {
+	      fetch('http://localhost:8000/api/sign/?id=' + sign,
+		
+	    {
+	      method: 'GET',
+	      headers: {
+		'Content-Type': 'application/json'
+	      },
+	    })
+	    .then(response => {
+	      if (!response.ok) {
+		throw new Error('Network response was not ok');
+	      }
+	      return response.json();
+	    })
+	    .then(data => {
+		setSigns(data);
+	        console.log('Sign request successful:', data);
+	      // Handle successful response here
+	    })
+	    .catch(error => {
+	      console.error('There was a problem with the GET request:', error);
+	      // Handle error here
+	    })}
+, [sign]);
+
+
   const [translation, setTranslation] = useState('');
   // Recorded video URL
   const [videoUrl, setVideoUrl] = useState(null);
@@ -72,12 +109,12 @@ export default function Sign() {
   const handleSave = () => {
     // Data to be sent in the POST request
     const postData = {
-	  'sign_name': translation,
-    'handshape': handshape,
-	  'flexion': flexion,
-	  'sign_type': signType,
-	  'major_location': majorLocation,
-	  'minor_location': minorLocation
+	'sign_name': translation,
+    	'handshape': handshape,
+	'flexion': flexion,
+	'sign_type': signType,
+	'major_location': majorLocation,
+	'minor_location': minorLocation
     };
 
     // Fetch POST request
@@ -103,62 +140,43 @@ export default function Sign() {
       // Handle error here
     });
   };
- 
-  
-
+  if(signs === null) {
+    return (<html></html>);
+  }
   return (
-    <body>
-      <div className="min-h-screen min-w-screen">
-        <div className="absolute top-0 right-0 container mx-auto py-20 min-h-screen min-w-screen">
-          <div className="flex flex-row align-center justify-end container-snap">
-            <div className="flex justify-end px-60">
-              <ParameterSelector name={"Handshape"} active={handshape} onSelect={setHandshape} options={["1", "3"]}/>
-              <ParameterSelector name={"Flexion"} active={flexion} onSelect={setFlexion} options={["Bent", "Crossed"]}/>
-              <ParameterSelector name={"Sign Type"} active={signType} onSelect={setSignType} options={["Asymmetrical Different Handshape", "Asymmetrical Same Handshape"]}/>
-              <ParameterSelector name={"Major Location"} active={majorLocation} onSelect={setMajorLocation} options={["Body", "Hand"]}/>
-              <ParameterSelector name={"Minor Location"} active={minorLocation} onSelect={setMinorLocation} options={["Body Away", "Eye"]}/>
-            </div>
-          </div>
-          
-          <div className="flex justify-end px-60 py-12">
-            <form class="bg-white w-96 border border-black-500 shadow-md rounded-lg px-12 pt-6 pb-8 mb-4">
-            <div class="mb-4">
-              <label class="block text-gray-700 text-sm font-bold mb-2" for="English">
-                English Translation
-              </label>
-              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={translation} onChange={e => setTranslation(e.target.value)}id="English" type="text" placeholder="English"/>
-            </div> 
-          </form>
-          </div>
-        </div>
-        <div class="fixed top-0 right-0 p-20">
-          <Link to="/add">
-            <button class="w-24 h-24 rounded-lg flex justify-center items-center border border-black-200 shadow-lg hover:bg-slate-200" onClick={handleSave}>
-              <img src={save_icon} alt="Save"/>
-            </button>
-          </Link>
-        </div>
-        <div class="inline-flex flex-col justify-center min-h-screen p-24">
-          <ReactMediaRecorder
-            
-            video render={({ status, startRecording, stopRecording, mediaBlobUrl }) => (
-              <div>
-                <button class="w-40 h-10 text-sm rounded-lg font-semibold flex justify-center items-center border border-black-500 hover:bg-slate-200" onClick={startRecording}>Start Recording</button>
-                <button class="w-40 h-10 text-sm rounded-lg font-semibold flex justify-center items-center border border-black-500 hover:bg-slate-200" onClick={stopRecording}>Stop Recording</button>
-                <video class="py-12" src={mediaBlobUrl} controls autoPlay loop />
-                <p class="font-semibold">{status}</p>
-              </div>
-            )}
-          />
-        </div>
-        <div class="fixed bottom-0 right-0 p-20">
-          <Link to="/search">
-            <button class="w-24 h-24 rounded-lg flex justify-center items-center border border-black-200 shadow-lg hover:bg-slate-200">
-              <img src={back_icon} alt="Back"/>
-            </button>
-          </Link>
-        </div>
-      </div>
-    </body>
+   <div className="absolute top-0 right-0 container mx-auto py-20">
+	  <div className="flex justify-end px-60">
+		 <ParameterDisplay name={"Handshape"}      value={signs[0].handshape}/>
+	   <ParameterDisplay name={"Location"}        value={signs[0].location}  />
+		 <ParameterDisplay name={"Movement"}      value={signs[0].movement}    />
+	  </div>
+    <div className="flex justify-end px-60 py-12">
+     <form class="bg-white w-96 border border-black-500 shadow-md rounded-lg px-12 pt-6 pb-8 mb-4">
+     <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="English">
+        English Translation
+      </label>
+      <div class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{signs[0].sign_name}</div>
+     </div> 
+     </form>
+    </div>
+    <div class="absolute top-0 left-0 p-20">
+  </div>
+    <div class="fixed bottom-0 right-0 p-20">
+	<Link to="/">
+	<button class="w-24 h-24 rounded-lg flex justify-center items-center border border-black-200 shadow-lg hover:bg-slate-200">
+	<img src={back_icon} alt="Back"/>
+	</button>
+    </Link>
+
+    </div>
+    <div class="fixed bottom-0 right-0 p-20">
+      <Link to="/search">
+        <button class="w-24 h-24 rounded-lg flex justify-center items-center border border-black-200 shadow-lg hover:bg-slate-200">
+          <img src={back_icon} alt="Back"/>
+        </button>
+      </Link>
+    </div>
+  </div>
   );
 };

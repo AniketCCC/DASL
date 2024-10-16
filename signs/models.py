@@ -85,11 +85,11 @@ class Sign(models.Model):
 
 
     sign_name = models.CharField(max_length=100, default="")
-    handshape = models.CharField(max_length=100, choices=PARAMETER_CHOICES["HANDSHAPES"], default="1")
-    flexion = models.CharField(max_length=100, choices=PARAMETER_CHOICES["FLEXIONS"], default="Bent")
-    sign_type = models.CharField(max_length=100, choices=PARAMETER_CHOICES["SIGNTYPES"], default="Asymmetrical Different Handshape")
-    major_location = models.CharField(max_length=100, choices=PARAMETER_CHOICES["MAJOR LOCATIONS"], default="Body")
-    minor_location = models.CharField(max_length=100, choices=PARAMETER_CHOICES["MINOR LOCATIONS"], default="Body Away")
+    handshape = models.CharField(max_length=100,  default="1")
+    location = models.CharField(max_length=100,  default="Forehead")
+    movement = models.CharField(max_length=100,  default="Elbow Out")
+    #major_location = models.CharField(max_length=100, choices=PARAMETER_CHOICES["MAJOR LOCATIONS"], default="Body")
+    #minor_location = models.CharField(max_length=100, choices=PARAMETER_CHOICES["MINOR LOCATIONS"], default="Body Away")
 
 class Demonstration(models.Model):
     pub_date = models.DateTimeField("date published")
