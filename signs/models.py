@@ -1,3 +1,23 @@
+'''
+This module defines the models for the DASL signs application.
+Models:
+    Tag: Represents a tag that can be associated with a sign.
+    Sign: Represents a sign with various parameters such as handshape, flexion, 
+        sign type, major location, and minor location.
+    Demonstration: Represents a demonstration of a sign, including the publication date, 
+        the sign being demonstrated, and the user who created it.
+    Set: Represents a set of signs, including the signs contained in the set and the user 
+        who created the set.
+Relationships:
+    - A Sign can have multiple tags (Many-to-Many relationship).
+    - A Demonstration is linked to a specific Sign and a specific user 
+        (ForeignKey relationships).
+    - A Set contains multiple Signs and is created by a specific user 
+        (Many-to-Many and ForeignKey relationships).
+This module interacts with the project by defining the core data structures and relationships 
+    for managing signs, their demonstrations, and sets of signs.
+'''
+
 from django.db import models
 from django.conf import settings
 

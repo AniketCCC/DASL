@@ -22,7 +22,41 @@ export function ParameterDisplay({ name, value}) {
 	  {value}
         </div>
       </div>
+{/*<<<<<<< HEAD*/}
     </div>
+{/*=======
+
+      <Transition
+        as={Fragment}
+        enter="transition ease-out duration-100"
+        enterFrom="transform opacity-0 scale-95"
+        enterTo="transform opacity-100 scale-100"
+        leave="transition ease-in duration-75"
+        leaveFrom="transform opacity-100 scale-100"
+        leaveTo="transform opacity-0 scale-95"
+      >
+        <Menu.Items className="absolute right-0 z-10 mt-2 w-full origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <div className="py-1">
+	  {options.map(option => 
+	    <Menu.Item>
+              {({ active }) => {
+		return (
+                <button
+                  onClick={() => onSelect(option)}
+                  className={classNames(
+                    active ? 'w-[100%] text-left bg-gray-100 text-gray-900' : 'w-[100%] text-left text-gray-700',
+                    'w-[100%] text-left block px-4 py-2 text-sm'
+                  )}
+                >
+		      {option}
+                </button>
+              );}}
+            </Menu.Item>)}
+          </div>
+        </Menu.Items>
+      </Transition>
+    </Menu>
+>>>>>>> origin/main*/}
     </div>
   )
 }
@@ -110,25 +144,21 @@ export default function Sign() {
     return (<html></html>);
   }
   return (
-    <>
-    <div className="absolute top-0 right-0 container mx-auto py-20">
-	 <div className="flex justify-end px-60">
-		<ParameterDisplay name={"Handshape"}      value={signs[0].handshape}/>
-	  <ParameterDisplay name={"Location"}        value={signs[0].location}  />
-		<ParameterDisplay name={"Movement"}      value={signs[0].movement}    />
-		{/*<ParameterDisplay name={"Major Location"} value={signs[0].major_location}/>
-		<ParameterDisplay name={"Minor Location"} value={signs[0].minor_location}/>*/}
+   <div className="absolute top-0 right-0 container mx-auto py-20">
+	  <div className="flex justify-end px-60">
+		 <ParameterDisplay name={"Handshape"}      value={signs[0].handshape}/>
+	   <ParameterDisplay name={"Location"}        value={signs[0].location}  />
+		 <ParameterDisplay name={"Movement"}      value={signs[0].movement}    />
 	  </div>
     <div className="flex justify-end px-60 py-12">
-    <form class="bg-white w-96 border border-black-500 shadow-md rounded-lg px-12 pt-6 pb-8 mb-4">
-    <div class="mb-4">
+     <form class="bg-white w-96 border border-black-500 shadow-md rounded-lg px-12 pt-6 pb-8 mb-4">
+     <div class="mb-4">
       <label class="block text-gray-700 text-sm font-bold mb-2" for="English">
         English Translation
       </label>
       <div class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{signs[0].sign_name}</div>
-    </div> 
-    </form>
-    </div>
+     </div> 
+     </form>
     </div>
     <div class="absolute top-0 left-0 p-20">
   </div>
@@ -138,7 +168,15 @@ export default function Sign() {
 	<img src={back_icon} alt="Back"/>
 	</button>
     </Link>
+
     </div>
-    </>
+    <div class="fixed bottom-0 right-0 p-20">
+      <Link to="/search">
+        <button class="w-24 h-24 rounded-lg flex justify-center items-center border border-black-200 shadow-lg hover:bg-slate-200">
+          <img src={back_icon} alt="Back"/>
+        </button>
+      </Link>
+    </div>
+  </div>
   );
 };

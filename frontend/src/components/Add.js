@@ -108,19 +108,14 @@ export default function Add() {
   };
  
   
-
+/*
   return (
     <div className="min-h-screen min-w-screen">
       <div className="absolute top-0 right-0 container mx-auto py-20">
         <div className="flex flex-row align-center justify-end container-snap">
           <div className="flex justify-end px-60">
 						<ParameterBar handshape={handshape} loc={flexion} movement={signType} setHandshape={setHandshape} setLocation={setFlexion} setMovement={setSignType}/>
-            {/*<ParameterSelector name={"Handshape"} active={handshape} onSelect={setHandshape} options={["1", "3"]}/>
-            <ParameterSelector name={"Location"} active={flexion} onSelect={setFlexion} options={["Bent", "Crossed"]}/>
-            <ParameterSelector name={"Movement"} active={signType} onSelect={setSignType} options={["Asymmetrical Different Handshape", "Asymmetrical Same Handshape"]}/>
-            <ParameterSelector name={"Major Location"} active={majorLocation} onSelect={setMajorLocation} options={["Body", "Hand"]}/>
-            <ParameterSelector name={"Minor Location"} active={minorLocation} onSelect={setMinorLocation} options={["Body Away", "Eye"]}/>*/}
-          </div>
+         </div>
         </div>
         
         <div className="flex justify-end px-60 py-12">
@@ -164,3 +159,57 @@ export default function Add() {
   </div>
   );
 };
+*/
+
+
+  return (
+    <div className="min-h-screen min-w-screen">
+      <div className="absolute top-0 right-0 container mx-auto py-20">
+        <div className="flex flex-row align-center justify-end container-snap">
+          <div className="flex justify-end px-60">
+ 						<ParameterBar handshape={handshape} loc={flexion} movement={signType} setHandshape={setHandshape} setLocation={setFlexion} setMovement={setSignType}/>
+          </div>
+        </div>
+        
+        <div className="flex justify-end px-60 py-12">
+          <form class="bg-white w-96 border border-black-500 shadow-md rounded-lg px-12 pt-6 pb-8 mb-4">
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="English">
+              English Translation
+            </label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={translation} onChange={e => setTranslation(e.target.value)}id="English" type="text" placeholder="English"/>
+          </div> 
+        </form>
+        </div>
+      </div>
+      <div class="fixed top-0 right-0 p-20">
+        <Link to="/add">
+          <button class="w-24 h-24 rounded-lg flex justify-center items-center border border-black-200 shadow-lg hover:bg-slate-200" onClick={handleSave}>
+            <img src={save_icon} alt="Save"/>
+          </button>
+        </Link>
+      </div>
+    <div class="inline-flex flex-col justify-center min-h-screen p-24">
+      <ReactMediaRecorder
+        
+        video render={({ status, startRecording, stopRecording, mediaBlobUrl }) => (
+          <div>
+            <button class="w-40 h-10 text-sm rounded-lg font-semibold flex justify-center items-center border border-black-500 hover:bg-slate-200" onClick={startRecording}>Start Recording</button>
+            <button class="w-40 h-10 text-sm rounded-lg font-semibold flex justify-center items-center border border-black-500 hover:bg-slate-200" onClick={stopRecording}>Stop Recording</button>
+            <video class="py-12" src={mediaBlobUrl} controls autoPlay loop />
+            <p class="font-semibold">{status}</p>
+          </div>
+        )}
+      />
+    </div>
+    <div class="fixed bottom-0 right-0 p-20">
+      <Link to="/search">
+        <button class="w-24 h-24 rounded-lg flex justify-center items-center border border-black-200 shadow-lg hover:bg-slate-200">
+          <img src={back_icon} alt="Back"/>
+        </button>
+      </Link>
+    </div>
+  </div>
+  );
+};
+
