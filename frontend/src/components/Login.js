@@ -1,5 +1,6 @@
 import react, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom'
+import back_icon from '../assets/arrow-back.svg';
 
 
 
@@ -11,7 +12,6 @@ export default function Login() {
 
     async function Login(e) {
         e.preventDefault();
-
         
     }
 
@@ -28,6 +28,14 @@ export default function Login() {
                         <button type="button" class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-8 py-2.5 text-center me-2 mt-20 mb-2">Login</button>    
                     </form>
                     <h3 className="m-4 ">Don't have an account? <Link to="/register" className="text-blue-300 hover:text-blue-500 focus:text-blue-700">Sign Up Here.</Link></h3>
+                </div>
+
+                <div class="fixed bottom-0 right-0 p-20">
+                    <Link to="/">
+                        <button class="w-24 h-24 rounded-lg flex justify-center items-center border border-black-200 shadow-lg hover:bg-slate-200">
+                            <img src={back_icon} alt="Back"/>
+                        </button>
+                    </Link>
                 </div>
             </body>
         </html>

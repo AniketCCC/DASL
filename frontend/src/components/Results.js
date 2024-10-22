@@ -1,5 +1,6 @@
 import react, {useState, useEffect} from 'react'
 import {useParams, useSearchParams} from 'react-router-dom'
+import back_icon from '../assets/arrow-back.svg';
 
 import {Link} from 'react-router-dom';
 
@@ -38,7 +39,9 @@ export default function Results() {
 	      // Handle error here
 	    })}
 , [ASLParameters]);
-	return (<div class="flex flex-col items-center justify-center">
+	return (
+	<div>
+	<div class="flex flex-col items-center justify-center">
 		<h1 class="font-semibold font-16">Matching Signs:</h1>
 		<div>
 		{(!signs)
@@ -54,6 +57,15 @@ export default function Results() {
 		} {/*Add key for list*/}
 	 	</div>
 	       </div>
+
+		<div class="fixed bottom-0 right-0 p-20">
+                    <Link to="/search">
+                        <button class="w-24 h-24 rounded-lg flex justify-center items-center border border-black-200 shadow-lg hover:bg-slate-200">
+                            <img src={back_icon} alt="Back"/>
+                        </button>
+                    </Link>
+        </div>
+		</div>
 		);
 }
 

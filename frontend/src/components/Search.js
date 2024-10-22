@@ -72,24 +72,25 @@ export default function Search() {
 
   return (
     <html>
+    <body>
 			<div>
-      <div className="flex flex-row align-center justify-end container-snap">
-        <h1 className="flex flex-row justify-start text-center text-6xl py-20 font-bold">Dictionary of American Sign Language</h1>
-        <div className="inline-flex p-20">
-          <Link to="/add">
+      <div className="flex flex-row align-center justify-end min-w-screen">
+        <span className="inline-flex justify-center text-center text-6xl py-20 px-16">Dictionary of American Sign Language</span>
+        <span className="inline-flex p-20">
+          <Link to="/add">  
             <button class="w-24 h-24 rounded-lg flex justify-center items-center border border-black-200 shadow-lg hover:bg-slate-200">
               <img src={plus_icon} alt="Add Sign"/>
             </button>
           </Link>
-        </div>
+        </span>
       </div>
-      <div className="flex flex-row justify-center container-snap">
-        <div className="flex flex-row px-20">
+      <div className="flex flex-row justify-center">
+        <div className="flex flex-row px-20 pb-20 mb-80">
 					<ParameterBar handshape={handshape} loc={flexion} movement={signType} setHandshape={setHandshape} setLocation={setFlexion} setMovement={setSignType}/>
         </div>
       </div>
 
-      <div class="absolute inset-x-0 bottom-0 h-28 container-snap">
+      <div class="absolute inset-x-0 bottom-0 h-28">
         <div class="flex justify-center">
           <button class="w-48 px-4 py-2 text-sm text-black-600 font-unbold rounded-l-xl border border-black-200 hover:bg-orange-400 text-2xl shadow-lg">Parameter Search</button>
           <button class="w-48 px-4 py-2 text-sm text-black-600 font-unbold rounded-r-xl border border-black-200 hover:bg-red-400 text-2xl shadow-lg">Tag Search</button>
@@ -108,6 +109,7 @@ export default function Search() {
         </Link>
       </div>
 			</div>
+      </body>
     </html>
   );
 }
