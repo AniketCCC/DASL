@@ -6,17 +6,35 @@ import Cookies from "universal-cookie";
 
 
 export default function Login() {
-    const navigator = useNavigate();
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+		const cookies = new Cookies();
+
+		function getCSRF (){
+		fetch("http://localhost:8000/api/get_csrf/", {
+				credentials: "include",
+			})
+			.then((res) => {
+				let csrfToken = res.headers.get("X-CSRFToken");
+				//this.setState({csrf: csrfToken});
+				console.log(csrfToken);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+		}
+
     async function login(e) {
         e.preventDefault();
+				getCSRF();
 				fetch("http://localhost:8000/api/login/", {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",
+						"X-CSRFToken": cookies.get("csrftoken"),
 					},
 					credentials: "include",
 					body: JSON.stringify({username: email, password: password}),
@@ -27,8 +45,9 @@ export default function Login() {
       		return response.json();
     		})
 				//.then(this.isResponseOk)
-				.then((data) => {
+				.then((data) => {	
 					console.log(data);
+					navigate('/search');
 					//this.setState({isAuthenticated: true, username: "", password: "", error: ""});
 				})
 				.catch((err) => {

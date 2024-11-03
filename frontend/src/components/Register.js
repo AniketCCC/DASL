@@ -2,6 +2,9 @@ import react, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom'
 import back_icon from '../assets/arrow-back.svg';
 
+import Cookies from "universal-cookie";
+
+
 
 export default function Register() {
     
@@ -10,6 +13,22 @@ export default function Register() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+		const cookies = new Cookies();
+
+		function getCSRF (){
+		fetch("http://localhost:8000/api/get_csrf/", {
+				credentials: "include",
+			})
+			.then((res) => {
+				let csrfToken = res.headers.get("X-CSRFToken");
+				//this.setState({csrf: csrfToken});
+				console.log(csrfToken);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+		}
 
     async function register(e) {
         e.preventDefault();
@@ -24,7 +43,9 @@ export default function Register() {
         fetch('http://localhost:8000/api/register/', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+						    "X-CSRFToken": cookies.get("csrftoken")
+
             },
 						credentials: "include",
             body: JSON.stringify(postData)

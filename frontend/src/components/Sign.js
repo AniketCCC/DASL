@@ -8,6 +8,9 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import save_icon from '../assets/save.svg';
 import back_icon from '../assets/arrow-back.svg';
 
+import Cookies from "universal-cookie";
+
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
@@ -69,6 +72,9 @@ export default function Sign() {
 	//const ASLParameters = useSearchParams();
 	//const ASLParameters = new URL(document.location).searchParameters;
 	const [signs, setSigns] = useState(null);
+
+	const cookies = new Cookies();
+
 	{/*TODO: Consistent casing*/}
 	useEffect(() => {
 	      fetch('http://localhost:8000/api/sign/?id=' + sign,
@@ -76,8 +82,11 @@ export default function Sign() {
 	    {
 	      method: 'GET',
 	      headers: {
-		'Content-Type': 'application/json'
-	      },
+		'Content-Type': 'application/json',
+	      						"X-CSRFToken": cookies.get("csrftoken"),
+					},
+					credentials: "include",
+
 	    })
 	    .then(response => {
 	      if (!response.ok) {
@@ -105,6 +114,7 @@ export default function Sign() {
   const [signType, setSignType] = useState(null);
   const [majorLocation, setMajorLocation] = useState(null);
   const [minorLocation, setMinorLocation] = useState(null);
+
 
   const handleSave = () => {
     // Data to be sent in the POST request

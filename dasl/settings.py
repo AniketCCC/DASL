@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
 		#TODO: Add CSRF protection
-    #'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -123,7 +123,8 @@ USE_I18N = True
 
 USE_TZ = True
 CSRF_TRUSTED_ORIGINS = [
-'https://*.herokuapp.com'
+#'https://*.herokuapp.com'
+  "http://localhost:3000"
 ]
 
 # Static files (CSS, JavaScript, Images)

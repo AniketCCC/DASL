@@ -1,6 +1,8 @@
 import react, {useState, useEffect} from 'react'
 import {useParams, useSearchParams} from 'react-router-dom'
 import back_icon from '../assets/arrow-back.svg';
+import Cookies from "universal-cookie";
+
 
 import {Link} from 'react-router-dom';
 
@@ -10,18 +12,23 @@ export default function Results() {
 	//const ASLParameters = new URL(document.location).searchParameters;
 	const [signs, setSigns] = useState(null);
 	{/*TODO: Consistent casing*/}
+
+	const cookies = new Cookies();
+
 	useEffect(() => {
 	      fetch('http://localhost:8000/api/signs/?handshape=' + ASLParameters.get("handshape") + 
 		      		 '&location='   + ASLParameters.get("location")   +
-						   '&movement='   + ASLParameters.get("movement"),   //+
-//						   '&major_location='   + ASLParameters.get("majorLocation")   +
-//						   '&minor_location='   + ASLParameters.get("minorLocation")   ,
+						   '&movement='   + ASLParameters.get("movement"),
 		
 	    {
 	      method: 'GET',
+				
 	      headers: {
-		'Content-Type': 'application/json'
-	      },
+          'Content-Type': 'application/json',
+          "X-CSRFToken": cookies.get("csrftoken"),
+				},
+				credentials: "include",
+
 	    })
 	    .then(response => {
 	      if (!response.ok) {

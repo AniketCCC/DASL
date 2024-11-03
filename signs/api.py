@@ -21,6 +21,7 @@ from rest_framework import viewsets, permissions
 from .serializers import SignSerializer
 
 from django.http import JsonResponse
+from django.middleware.csrf import get_token
 from django_filters.rest_framework import DjangoFilterBackend
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -29,16 +30,23 @@ from django.views.decorators.http import require_POST
 class SignViewSet(viewsets.ModelViewSet):
     queryset = Sign.objects.all()
     permission_classes = [
-        permissions.AllowAny
+				permissions.IsAuthenticated
+        #permissions.AllowAny
     ]
     serializer_class = SignSerializer
     #filter_backends = [DjangoFilterBackend]    
     filterset_fields = ['handshape', 'location', 'movement']#, 'major_location', 'minor_location']
 
+    def perform_create(self, serializer):
+      serializer.save(creator=self.request.user)
+    def get_queryset(self): 
+      return self.queryset.filter(creator=self.request.user)
+
 class SignNameViewSet(viewsets.ModelViewSet):
     queryset = Sign.objects.all()
     permission_classes = [
-        permissions.AllowAny
+				permissions.IsAuthenticated
+        #permissions.AllowAny
     ]
     serializer_class = SignSerializer
     #filter_backends = [DjangoFilterBackend]    
@@ -80,3 +88,8 @@ def RegisterView(request):
     login(request, user)
     return JsonResponse({'detail': 'Successfully registered.'})
 
+
+def get_csrf(request):
+    response = JsonResponse({'detail': 'CSRF cookie set'})
+    response['X-CSRFToken'] = get_token(request)
+    return response

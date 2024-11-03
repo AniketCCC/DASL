@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ReactMediaRecorder } from 'react-media-recorder';
+import Cookies from "universal-cookie";
 
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
@@ -72,6 +73,8 @@ export default function Add() {
   const [majorLocation, setMajorLocation] = useState(null);
   const [minorLocation, setMinorLocation] = useState(null);
 
+	const cookies = new Cookies();
+
   const handleSave = () => {
     // Data to be sent in the POST request
     const postData = {
@@ -86,8 +89,11 @@ export default function Add() {
     // Fetch POST request
     fetch('http://localhost:8000/api/signs/', {
       method: 'POST',
+			credentials: 'include',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+				"X-CSRFToken": cookies.get("csrftoken")
+
       },
       body: JSON.stringify(postData)
     })
@@ -107,60 +113,6 @@ export default function Add() {
     });
   };
  
-  
-/*
-  return (
-    <div className="min-h-screen min-w-screen">
-      <div className="absolute top-0 right-0 container mx-auto py-20">
-        <div className="flex flex-row align-center justify-end container-snap">
-          <div className="flex justify-end px-60">
-						<ParameterBar handshape={handshape} loc={flexion} movement={signType} setHandshape={setHandshape} setLocation={setFlexion} setMovement={setSignType}/>
-         </div>
-        </div>
-        
-        <div className="flex justify-end px-60 py-12">
-          <form class="bg-white w-96 border border-black-500 shadow-md rounded-lg px-12 pt-6 pb-8 mb-4">
-          <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="English">
-              English Translation
-            </label>
-            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={translation} onChange={e => setTranslation(e.target.value)}id="English" type="text" placeholder="English"/>
-          </div> 
-        </form>
-        </div>
-      </div>
-      <div class="fixed top-0 right-0 p-20">
-        <Link to="/add">
-          <button class="w-24 h-24 rounded-lg flex justify-center items-center border border-black-200 shadow-lg hover:bg-slate-200" onClick={handleSave}>
-            <img src={save_icon} alt="Save"/>
-          </button>
-        </Link>
-      </div>
-    <div class="inline-flex flex-col justify-center min-h-screen p-24">
-      <ReactMediaRecorder
-
-        video render={({ status, startRecording, stopRecording, mediaBlobUrl }) => (
-          <div>
-            <button class="w-40 h-10 text-sm rounded-lg font-semibold flex justify-center items-center border border-black-500 hover:bg-slate-200" onClick={startRecording}>Start Recording</button>
-            <button class="w-40 h-10 text-sm rounded-lg font-semibold flex justify-center items-center border border-black-500 hover:bg-slate-200" onClick={stopRecording}>Stop Recording</button>
-            <video class="py-12" src={mediaBlobUrl} controls autoPlay loop />
-            <p class="font-semibold">{status}</p>
-          </div>
-        )}
-      />
-    </div>
-    <div class="fixed bottom-0 right-0 p-20">
-      <Link to="/">
-        <button class="w-24 h-24 rounded-lg flex justify-center items-center border border-black-200 shadow-lg hover:bg-slate-200">
-          <img src={back_icon} alt="Back"/>
-        </button>
-      </Link>
-    </div>
-  </div>
-  );
-};
-*/
-
 
   return (
     <div className="min-h-screen min-w-screen">
@@ -192,14 +144,16 @@ export default function Add() {
     <div class="inline-flex flex-col justify-center min-h-screen p-24">
       <ReactMediaRecorder
         
-        video render={({ status, startRecording, stopRecording, mediaBlobUrl }) => (
+        video render={({ status, startRecording, stopRecording, mediaBlobUrl }) => {
+
+				return (
           <div>
             <button class="w-40 h-10 text-sm rounded-lg font-semibold flex justify-center items-center border border-black-500 hover:bg-slate-200" onClick={startRecording}>Start Recording</button>
             <button class="w-40 h-10 text-sm rounded-lg font-semibold flex justify-center items-center border border-black-500 hover:bg-slate-200" onClick={stopRecording}>Stop Recording</button>
             <video class="py-12" src={mediaBlobUrl} controls autoPlay loop />
             <p class="font-semibold">{status}</p>
           </div>
-        )}
+        )}}
       />
     </div>
     <div class="fixed bottom-0 right-0 p-20">

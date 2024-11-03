@@ -12,7 +12,7 @@ URL Patterns:
 """
 from django.urls import path, include
 from rest_framework import routers
-from .api import SignViewSet, SignNameViewSet, LoginView, RegisterView
+from .api import SignViewSet, SignNameViewSet, LoginView, RegisterView, get_csrf
 
 from . import views
 # Create your views here.
@@ -27,3 +27,4 @@ router.register("api/sign", SignNameViewSet, "sign_name")
 urlpatterns = router.urls
 urlpatterns.append(path("api/login/", LoginView, name="loginView"))
 urlpatterns.append(path("api/register/", RegisterView, name="registerView"))
+urlpatterns.append(path("api/get_csrf/", get_csrf, name="get_csrf"))
