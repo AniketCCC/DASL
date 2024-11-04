@@ -12,15 +12,19 @@ URL Patterns:
 """
 from django.urls import path, include
 from rest_framework import routers
-from .api import SignViewSet, SignNameViewSet
+from .api import SignViewSet, SignNameViewSet, LoginView, RegisterView, get_csrf
 
 from . import views
 # Create your views here.
 router = routers.DefaultRouter()
 router.register("api/signs", SignViewSet, "signs")
 router.register("api/sign", SignNameViewSet, "sign_name")
+#router.register("api/login", LoginView, "api-login")
 
 #urlpatterns = [
     #path("", views.SignFilterView.as_view(), name = "user-filter" )
 #]
 urlpatterns = router.urls
+urlpatterns.append(path("api/login/", LoginView, name="loginView"))
+urlpatterns.append(path("api/register/", RegisterView, name="registerView"))
+urlpatterns.append(path("api/get_csrf/", get_csrf, name="get_csrf"))

@@ -3,6 +3,8 @@ import plus_icon from '../assets/plus.svg';
 import '../App.css';
 import ParameterBar from "./ParameterBar.js";
 import { Link } from 'react-router-dom';
+import Cookies from "universal-cookie";
+
 
 
 import { Fragment, useState } from 'react';

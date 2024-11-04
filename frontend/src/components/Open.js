@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 export default function Open() {
 
     return(
-        <html>
+        <div>
         <link href='https://fonts.googleapis.com/css?family=Jacques Francois' rel='stylesheet'></link>
-            <body>
+            <div>
                 <div className="flex flex-col min-w-screen min-h-screen items-center align-middle justify-center container-snap">
                     <h2 className="flex flex-row justify-center text-center text-3xl">Dictionary of</h2>
                     <h1 className="flex flex-col justify-center text-center text-5xl mb-20">American Sign Language</h1>
@@ -20,8 +20,8 @@ export default function Open() {
                     <h2 className="flex flex-row justify-center text-center mt-20 text-3xl">Indiana School of the Deaf</h2>
                     
                 </div>
-            </body>
+            </div>
 
-        </html>
+        </div>
     )
 }

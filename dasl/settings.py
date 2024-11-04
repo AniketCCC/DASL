@@ -29,8 +29,9 @@ ALLOWED_HOSTS = ['.herokuapp.com']
 
 
 # Application definition
-
+#TODO: Insecure
 CORS_ALLOW_ALL_ORIGINS=True
+CORS_ALLOW_CREDENTIALS=True
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -42,7 +43,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_filters',
     'signs',
-    'users',
+#    'users',
     'rest_framework',
 ]
 
@@ -50,6 +51,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+		#TODO: Add CSRF protection
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -113,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-AUTH_USER_MODEL = 'users.User'
+#AUTH_USER_MODEL = 'users.User'
 
 TIME_ZONE = 'UTC'
 
@@ -121,7 +123,8 @@ USE_I18N = True
 
 USE_TZ = True
 CSRF_TRUSTED_ORIGINS = [
-'https://*.herokuapp.com'
+#'https://*.herokuapp.com'
+  "http://localhost:3000"
 ]
 
 # Static files (CSS, JavaScript, Images)
@@ -133,7 +136,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_AUTHENTICATION_CLASSES': ['rest_framework.authentication.SessionAuthentication']
 }
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
