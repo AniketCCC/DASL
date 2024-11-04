@@ -89,6 +89,7 @@ class Sign(models.Model):
     location = models.CharField(max_length=100,  default="Forehead")
     movement = models.CharField(max_length=100,  default="Elbow Out")
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="signs", on_delete=models.CASCADE, null=True)
+    video = models.FileField(upload_to="sign_videos", null=True)
     #major_location = models.CharField(max_length=100, choices=PARAMETER_CHOICES["MAJOR LOCATIONS"], default="Body")
     #minor_location = models.CharField(max_length=100, choices=PARAMETER_CHOICES["MINOR LOCATIONS"], default="Body Away")
 

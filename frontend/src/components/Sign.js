@@ -25,41 +25,7 @@ export function ParameterDisplay({ name, value}) {
 	  {value}
         </div>
       </div>
-{/*<<<<<<< HEAD*/}
     </div>
-{/*=======
-
-      <Transition
-        as={Fragment}
-        enter="transition ease-out duration-100"
-        enterFrom="transform opacity-0 scale-95"
-        enterTo="transform opacity-100 scale-100"
-        leave="transition ease-in duration-75"
-        leaveFrom="transform opacity-100 scale-100"
-        leaveTo="transform opacity-0 scale-95"
-      >
-        <Menu.Items className="absolute right-0 z-10 mt-2 w-full origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-          <div className="py-1">
-	  {options.map(option => 
-	    <Menu.Item>
-              {({ active }) => {
-		return (
-                <button
-                  onClick={() => onSelect(option)}
-                  className={classNames(
-                    active ? 'w-[100%] text-left bg-gray-100 text-gray-900' : 'w-[100%] text-left text-gray-700',
-                    'w-[100%] text-left block px-4 py-2 text-sm'
-                  )}
-                >
-		      {option}
-                </button>
-              );}}
-            </Menu.Item>)}
-          </div>
-        </Menu.Items>
-      </Transition>
-    </Menu>
->>>>>>> origin/main*/}
     </div>
   )
 }
@@ -154,7 +120,11 @@ export default function Sign() {
     return (<html></html>);
   }
   return (
-   <div className="absolute top-0 right-0 container mx-auto py-20">
+	  <div className="display:flex">
+		<div className = "flex justify-start px-40 py-20">
+			<video src={signs[0].video} type="video/mp4" controls/>
+		</div>
+   <div className="absolute display:flex top-0 right-0 container mx-auto py-20">
 	  <div className="flex justify-end px-60">
 		 <ParameterDisplay name={"Handshape"}      value={signs[0].handshape}/>
 	   <ParameterDisplay name={"Location"}        value={signs[0].location}  />
@@ -187,6 +157,7 @@ export default function Sign() {
         </button>
       </Link>
     </div>
+	</div>
   </div>
   );
 };

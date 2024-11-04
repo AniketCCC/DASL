@@ -73,29 +73,33 @@ export default function Add() {
   const [majorLocation, setMajorLocation] = useState(null);
   const [minorLocation, setMinorLocation] = useState(null);
 
+	const [file, setFile] = useState(null);
+
 	const cookies = new Cookies();
 
-  const handleSave = () => {
+  const handleSave = async () => {
     // Data to be sent in the POST request
-    const postData = {
-	'sign_name': translation,
-  'handshape': handshape,
-	'location': flexion,
-	'movement': signType
-	/*'major_location': majorLocation,
-	'minor_location': minorLocation*/
-    };
+
+		const response = await fetch(videoUrl);
+		const blob = await response.blob();
+		const videoFile = new File([blob], translation + ".mp4", { type: "video/mp4" });
+		setFile(videoFile);
 
     // Fetch POST request
+		const postData = new FormData();
+		postData.append('sign_name', translation);
+		postData.append('handshape', handshape);
+		postData.append('location', flexion);
+		postData.append('movement', signType);
+		postData.append('video', videoFile);
     fetch('http://localhost:8000/api/signs/', {
       method: 'POST',
 			credentials: 'include',
       headers: {
-        'Content-Type': 'application/json',
 				"X-CSRFToken": cookies.get("csrftoken")
 
       },
-      body: JSON.stringify(postData)
+      body: postData
     })
     .then(response => {
       if (!response.ok) {
@@ -145,12 +149,12 @@ export default function Add() {
       <ReactMediaRecorder
         
         video render={({ status, startRecording, stopRecording, mediaBlobUrl }) => {
-
+				setVideoUrl(mediaBlobUrl);
 				return (
           <div>
             <button class="w-40 h-10 text-sm rounded-lg font-semibold flex justify-center items-center border border-black-500 hover:bg-slate-200" onClick={startRecording}>Start Recording</button>
             <button class="w-40 h-10 text-sm rounded-lg font-semibold flex justify-center items-center border border-black-500 hover:bg-slate-200" onClick={stopRecording}>Stop Recording</button>
-            <video class="py-12" src={mediaBlobUrl} controls autoPlay loop />
+            <video class="py-12" src={mediaBlobUrl} controls autoPlay />
             <p class="font-semibold">{status}</p>
           </div>
         )}}
