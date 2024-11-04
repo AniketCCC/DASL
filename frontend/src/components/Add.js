@@ -76,9 +76,9 @@ export default function Add() {
     // Data to be sent in the POST request
     const postData = {
 	'sign_name': translation,
-  'handshape': handshape,
-	'location': flexion,
-	'movement': signType
+  'handshape': handshape[0],
+	'location': flexion[0],
+	'movement': signType[0]
 	/*'major_location': majorLocation,
 	'minor_location': minorLocation*/
     };
