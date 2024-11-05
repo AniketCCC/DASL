@@ -147,3 +147,4 @@ import dj_database_url
 django_heroku.settings(locals())
 
 CSRF_COOKIE_SAMESITE = 'None'
+CSRF_COOKIE_SECURE = True
