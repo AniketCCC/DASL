@@ -57,6 +57,26 @@ import ILY from '../images/ILY.jpg'
 import Z from '../images/Z.jpg'
 import Corna from '../images/Corna.jpg'
 
+import forehead from '../images/Forehead.jpg'
+import chin from '../images/Chin.jpg'
+import temples from '../images/Temples.jpg'
+import nose from '../images/Nose.jpg'
+import cheeks from '../images/Cheeks.jpg'
+import lips from '../images/Lips.jpg'
+import mouth from '../images/Mouth.jpg'
+import chest from '../images/Chest.jpg'
+import shoulders from '../images/Shoulders.jpg'
+import arms from '../images/Arms.jpg'
+import elbows from '../images/Elbows.jpg'
+import wrists from '../images/Wrists.jpg'
+import betweenHands from '../images/BetweenHands.jpg'
+import legs from '../images/Legs.jpg'
+import knees from '../images/Knees.jpg'
+import torsoFront from '../images/TorsoFront.jpg'
+import torsoLeft from '../images/TorsoLeft.jpg'
+import torsoRight from '../images/TorsoRight.jpg'
+import waist from '../images/Waist.jpg'
+
 import inACircle from '../images/InACircle.jpg'
 import upAndDown from '../images/UpAndDown.jpg'
 import forward from '../images/Forward.jpg'
@@ -75,7 +95,7 @@ export function ParameterSelector({ name, active, onSelect, options}) {
     <p className="font-semibold">{name}:</p>
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex w-60 h-20 justify-center items-center rounded-md bg-white px-3 py-2 text-sm text-gray-900 shadow-sm border border-black-200 hover:bg-gray-50">
+        <Menu.Button className="inline-flex w-60 h-26 justify-center items-center rounded-md bg-white px-3 py-2 text-sm text-gray-900 shadow-sm border border-black-200 hover:bg-gray-50">
 	        {active}
           <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5 text-gray-400" aria-hidden="true" />
         </Menu.Button>
@@ -119,7 +139,7 @@ export function ParameterSelector({ name, active, onSelect, options}) {
 export default function ParameterBar({handshape, loc, movement, setHandshape, setLocation, setMovement}) {
    return (<div className="flex justify-end">
             <ParameterSelector name={"Handshape"} active={handshape} onSelect={setHandshape} options={[["1", jpg1], ["2", jpg2], ["3", jpg3], ["Bent3", bent3], ["4", jpg4], ["5", jpg5], ["Claw5", claw5], ["6", jpg6], ["7", jpg7], ["8", jpg8], ["Open8", open8], ["9", jpg9], ["Flat9", flat9], ["A", A], ["OpenA", openA], ["B", B], ["BentB", bentB], ["FlatB", flatB], ["OpenB", openB], ["C", C], ["FlatC", flatC], ["SmallC", smallC], ["D", D], ["E", E], ["F", F], ["G", G], ["H", H], ["I", I], ["J", J], ["OpenK", openK], ["L", L], ["M", M], ["OpenM", openM], ["N", N], ["OpenN", openN], ["O", O], ["FlatO", flatO], ["SmallO", smallO], ["P", P], ["Q", Q], ["R", R], ["S", S], ["T", T], ["U", U], ["V", V], ["BentV", bentV], ["X", X], ["OpenX", openX], ["Y", Y], ["ILY", ILY], ["Z", Z], ["Corna", Corna]]}/>
-            <ParameterSelector name={"Location"}  active={loc} onSelect={setLocation} options={["Forehead", "Chin", "Temples", "Nose", "Cheeks", "Lips", "Mouth", "Center of chest", "At shoulders", "Near shoulders", "Along arms", "Elbows", "At wrists", "Non-dominant hand", "Between hands", "Waist area", "Around legs", "Knees", "In front of torso", "To the left of torso", "To the right of torso", "Moving"]}/>
+            <ParameterSelector name={"Location"}  active={loc} onSelect={setLocation} options={[["Forehead", forehead], ["Chin", chin], ["Temples", temples], ["Nose", nose], ["Cheeks", cheeks], ["Lips", lips], ["Mouth", mouth], ["Center of chest", chest], ["At shoulders", shoulders], ["Along arms", arms], ["Elbows", elbows], ["At wrists", wrists], ["Between hands", betweenHands], ["Waist area", waist], ["Around legs", legs], ["Knees", knees], ["In front of torso", torsoFront], ["To the left of torso", torsoLeft], ["To the right of torso", torsoRight]]}/>
             <ParameterSelector name={"Movement"}  active={movement} onSelect={setMovement} options={[["In a circle", inACircle], ["Up and down", upAndDown], ["Forward", forward], ["Backward", backward], ["Tapping", tapping], ["Back and forth", backAndForth], ["Wiggle", wiggle]]}/>
           </div>)
 }
