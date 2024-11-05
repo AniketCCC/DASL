@@ -142,8 +142,6 @@ REST_FRAMEWORK = {
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 import django_heroku
-import dotenv
-import dj_database_url
 django_heroku.settings(locals())
 
 CSRF_COOKIE_SAMESITE = 'None'
