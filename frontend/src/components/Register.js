@@ -40,6 +40,7 @@ export default function Register() {
         };
 
         //fetch request
+				getCSRF();
         fetch('https://dasl-fcef5d1148ef.herokuapp.com/api/register/', {
             method: 'POST',
             headers: {
