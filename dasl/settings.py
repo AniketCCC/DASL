@@ -123,7 +123,7 @@ USE_I18N = True
 
 USE_TZ = True
 CSRF_TRUSTED_ORIGINS = [
-#'https://*.herokuapp.com'
+  'https://*.herokuapp.com',
   "http://localhost:3000"
 ]
 
@@ -142,4 +142,6 @@ REST_FRAMEWORK = {
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 import django_heroku
+import dotenv
+import dj_database_url
 django_heroku.settings(locals())
