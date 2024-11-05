@@ -19,11 +19,13 @@ export default function Register() {
 		function getCSRF (){
 		fetch("https://dasl-fcef5d1148ef.herokuapp.com/api/get_csrf/", {
 				credentials: "include",
+				withCredentials: true,	
 			})
 			.then((res) => {
-				let csrfToken = res.headers.get("X-CSRFToken");
+				let csrfToken = res.headers.get("X-Csrftoken");
 				//this.setState({csrf: csrfToken});
-				console.log(csrfToken);
+				//console.log(res.headers.get("X-Csrftoken"));
+				//console.log(csrfToken);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -41,12 +43,13 @@ export default function Register() {
 
         //fetch request
 				getCSRF();
+				console.log(cookies.get());
+				console.log(cookies.get("csrftoken"));
         fetch('https://dasl-fcef5d1148ef.herokuapp.com/api/register/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
 						    "X-CSRFToken": cookies.get("csrftoken")
-
             },
 						credentials: "include",
             body: JSON.stringify(postData)
