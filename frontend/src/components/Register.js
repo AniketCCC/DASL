@@ -17,7 +17,7 @@ export default function Register() {
 		const cookies = new Cookies();
 
 		function getCSRF (){
-		fetch("http://localhost:8000/api/get_csrf/", {
+		fetch("https://dasl-fcef5d1148ef.herokuapp.com/api/get_csrf/", {
 				credentials: "include",
 			})
 			.then((res) => {
@@ -40,7 +40,7 @@ export default function Register() {
         };
 
         //fetch request
-        fetch('http://localhost:8000/api/register/', {
+        fetch('https://dasl-fcef5d1148ef.herokuapp.com/api/register/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

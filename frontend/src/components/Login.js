@@ -14,7 +14,7 @@ export default function Login() {
 		const cookies = new Cookies();
 
 		function getCSRF (){
-		fetch("http://localhost:8000/api/get_csrf/", {
+		fetch("https://dasl-fcef5d1148ef.herokuapp.com/api/get_csrf/", {
 				credentials: "include",
 			})
 			.then((res) => {
@@ -30,7 +30,7 @@ export default function Login() {
     async function login(e) {
         e.preventDefault();
 				getCSRF();
-				fetch("http://localhost:8000/api/login/", {
+				fetch("https://dasl-fcef5d1148ef.herokuapp.com/api/login/", {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",
