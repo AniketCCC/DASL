@@ -45,7 +45,8 @@ export default function Register() {
         //fetch request
 				getCSRF();
 				console.log(cookies.get());
-				console.log(cookies.get("csrf"));
+				const csr = cookies.get("csr");
+				console.log(csr);
         fetch('https://dasl-fcef5d1148ef.herokuapp.com/api/register/', {
             method: 'POST',
             headers: {
