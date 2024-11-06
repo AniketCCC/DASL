@@ -91,5 +91,5 @@ def RegisterView(request):
 
 def get_csrf(request):
     response = JsonResponse({'detail': 'CSRF cookie set'})
-    #response['X-CSRFToken'] = get_token(request)
+    response['X-CSRFToken'] = get_token(request)
     return response
