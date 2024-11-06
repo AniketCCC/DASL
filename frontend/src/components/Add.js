@@ -92,7 +92,7 @@ export default function Add() {
 		postData.append('location', flexion);
 		postData.append('movement', signType);
 		postData.append('video', videoFile);
-    fetch('http://localhost:8000/api/signs/', {
+    fetch('https://dasl-fcef5d1148ef.herokuapp.com/api/signs/', {
       method: 'POST',
 			credentials: 'include',
       headers: {
