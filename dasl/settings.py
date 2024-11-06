@@ -151,7 +151,7 @@ CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = False
 #CSRF_COOKIE_DOMAIN = 'localhost'
 #CSRF_COOKIE_DOMAIN = 'herokuapp.com'
-CSRF_COOKIE_DOMAIN = 'dasl-frontend-54e550f66e91.herokuapp.com'
+CSRF_COOKIE_DOMAIN = 'https://dasl-frontend-54e550f66e91.herokuapp.com'
 #CSRF_USE_SESSIONS = True
 
 SESSION_COOKIE_SAMESITE = 'None'
