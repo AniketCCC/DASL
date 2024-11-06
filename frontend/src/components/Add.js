@@ -97,7 +97,6 @@ export default function Add() {
 			credentials: 'include',
       headers: {
 				"X-CSRFToken": cookies.get("csrf")
-
       },
       body: postData
     })
