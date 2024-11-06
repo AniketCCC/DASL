@@ -93,13 +93,13 @@ class Sign(models.Model):
     #major_location = models.CharField(max_length=100, choices=PARAMETER_CHOICES["MAJOR LOCATIONS"], default="Body")
     #minor_location = models.CharField(max_length=100, choices=PARAMETER_CHOICES["MINOR LOCATIONS"], default="Body Away")
 
-class Demonstration(models.Model):
-    pub_date = models.DateTimeField("date published")
-    sign = models.ForeignKey(Sign, on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null = True)
-
-class Set(models.Model):
-    contained_signs = models.ManyToManyField("Sign", related_name="signs")
-    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null = True)
+#class Demonstration(models.Model):
+#    pub_date = models.DateTimeField("date published")
+#    sign = models.ForeignKey(Sign, on_delete=models.CASCADE)
+#    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null = True)
+#
+#class Set(models.Model):
+#    contained_signs = models.ManyToManyField("Sign", related_name="signs")
+#    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null = True)
 
 
