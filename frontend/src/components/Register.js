@@ -45,12 +45,12 @@ export default function Register() {
         //fetch request
 				getCSRF();
 				console.log(cookies.get());
-				console.log(cookies.get("csrftoken"));
+				console.log(cookies.get("csrf"));
         fetch('https://dasl-fcef5d1148ef.herokuapp.com/api/register/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-						    "X-CSRFToken": cookies.get("csrftoken")
+						    "X-CSRFToken": cookies.get("csrf")
             },
 						credentials: "include",
             body: JSON.stringify(postData)

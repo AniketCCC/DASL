@@ -19,6 +19,7 @@ export default function Login() {
 			})
 			.then((res) => {
 				let csrfToken = res.headers.get("X-CSRFToken");
+				cookies.set('csrf', csrfToken, {path: '/', secure: true, httpOnly: false, sameSite: 'None'});
 				//this.setState({csrf: csrfToken});
 				console.log(csrfToken);
 			})
@@ -34,7 +35,7 @@ export default function Login() {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",
-						"X-CSRFToken": cookies.get("csrftoken"),
+						"X-CSRFToken": cookies.get("csrf"),
 					},
 					credentials: "include",
 					body: JSON.stringify({username: email, password: password}),

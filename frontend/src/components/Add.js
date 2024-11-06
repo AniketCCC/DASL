@@ -96,7 +96,7 @@ export default function Add() {
       method: 'POST',
 			credentials: 'include',
       headers: {
-				"X-CSRFToken": cookies.get("csrftoken")
+				"X-CSRFToken": cookies.get("csrf")
 
       },
       body: postData
