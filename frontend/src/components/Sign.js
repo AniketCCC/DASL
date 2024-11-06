@@ -43,7 +43,7 @@ export default function Sign() {
 
 	{/*TODO: Consistent casing*/}
 	useEffect(() => {
-	      fetch('http://localhost:8000/api/sign/?id=' + sign,
+	      fetch('https://dasl-fcef5d1148ef.herokuapp.com/api/sign/?id=' + sign,
 		
 	    {
 	      method: 'GET',
@@ -94,7 +94,7 @@ export default function Sign() {
     };
 
     // Fetch POST request
-    fetch('http://localhost:8000/api/signs/', {
+    fetch('https://dasl-fcef5d1148ef.herokuapp.com/api/signs/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

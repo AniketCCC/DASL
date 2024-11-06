@@ -16,7 +16,7 @@ export default function Results() {
 	const cookies = new Cookies();
 
 	useEffect(() => {
-	      fetch('http://localhost:8000/api/signs/?handshape=' + ASLParameters.get("handshape") + 
+	      fetch('https://dasl-fcef5d1148ef.herokuapp.com/api/signs/?handshape=' + ASLParameters.get("handshape") + 
 		      		 '&location='   + ASLParameters.get("location")   +
 						   '&movement='   + ASLParameters.get("movement"),
 		
