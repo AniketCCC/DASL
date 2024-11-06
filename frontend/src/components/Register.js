@@ -24,7 +24,7 @@ export default function Register() {
 			.then((res) => {
 				let csrfToken = res.headers.get("X-Csrftoken");
 				//this.setState({csrf: csrfToken});
-				//console.log(res.headers.get("X-Csrftoken"));
+				console.log(res.headers.get("X-Csrftoken"));
 				//console.log(csrfToken);
 			})
 			.catch((err) => {
