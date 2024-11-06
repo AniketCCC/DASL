@@ -147,7 +147,7 @@ import django_heroku
 django_heroku.settings(locals())
 
 CSRF_COOKIE_SAMESITE = 'None'
-CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = False
 CSRF_COOKIE_HTTPONLY = False
 
 SESSION_COOKIE_SAMESITE = 'None'
