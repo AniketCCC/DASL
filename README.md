@@ -17,11 +17,6 @@ python manage.py runserver
 ```
 it should say "running" or something like that 
 now try 
-INSIDE OF 'frontend' folder there is another README
-    But once inside of frontend directory { cd frontend }
-    Run { npm install } to make sure you have all necessary dependencies
-    Run { npm start } to have the website open on your computer
-
 
 ```
 python3 manage.py makemigrations
@@ -31,7 +26,9 @@ python3 manage.py createsuperuser
 
 this should make sure your database is up to date and make your superuser.
 now run the server again and go to localhost:8000\admin on your browser (write that into your search bar) 
-Now login using the user you made 
 ... 
-lmk if it works!!
+INSIDE OF the 'frontend' folder there is another README
+    Once inside of frontend directory { cd frontend }
+    Run { npm install } to make sure you have all necessary dependencies
+    Run { npm start } to have the website open on your computer
 
